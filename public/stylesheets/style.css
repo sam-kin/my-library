@@ -1,0 +1,138 @@
+body {
+  padding: 20px 10px;
+  color: #666;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+*{box-sizing: border-box;}
+
+a {
+  color: #00B7FF;
+}
+
+.container {
+  padding-right: 20px;
+  display: flex;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  flex: auto auto 400px;
+  margin-right: 30px;
+  box-shadow: 1px 1px 10px rgb(233, 233, 233);
+  background-color: #f7faff;
+}
+
+.main-content {
+  flex: 1 1 400px;
+  margin-left: 300px;
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar ul:not(:last-child) {
+  border-bottom: 1px solid rgb(182, 182, 182);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.sidebar li {
+  margin: 0;
+  font-size: 1.02rem;
+  padding: .4em 1em;
+  cursor: default;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.text-danger {
+  color: orangered;
+}
+
+.text-success {
+  color: skyblue;
+}
+
+.text-warning {
+  color: rgb(252, 203, 112);
+}
+
+.copy-container:not(:first-child) {
+  padding-top: 10px 0;
+}
+
+.copy_container {
+  padding-bottom: 10px;
+}
+
+.copy-container:not(:last-child) {
+  border-bottom: 1px solid #aaa;
+}
+
+.form-control {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: .4em .7em;
+  margin: 15px 0;
+  border: 1px solid rgb(184, 184, 184);
+  border-radius: 10px;
+  outline: 0;
+  color: inherit;
+}
+
+.btn {
+  display: inline-block;
+  background-color: white;
+  font-size: 1.1rem;
+  padding: .5em 1em;
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 10px;
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+  margin: 10px 10px 5px 0;
+}
+
+.btn-primary {
+  background-color: rgb(118, 166, 255);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: rgb(62, 128, 252);
+}
+
+.btn-danger {
+  background-color: rgb(250, 66, 66);
+  color: white;
+  border: none
+}
+
+.btn-danger:hover {
+  background-color: rgb(226, 39, 39);
+}
+
+.control-container {
+  position: relative;
+  border-top: 1px solid #aaa;
+  margin-top: 15px;
+}
+
+.errors {
+  color: rgb(187, 80, 42);
+}

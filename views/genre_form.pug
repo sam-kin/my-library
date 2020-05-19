@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar.pug
+    
+    .main-content
+        block main
+            h1  #{title}
+
+            form(method='POST' action='')
+                .form-group
+                    label(for='name')
+                    input.form-control#name(type='text' name='name' placeholder='Genre name' value=(gener===undefined)? '' : genre.name)
+                button.btn.btn-primary(type='submit') Submit
+
+            if errors
+                h3 Some errors:
+                ul.errors
+                    for error in errors
+                        li!= error.msg

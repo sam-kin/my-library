@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+    
+    .main-content
+        block main
+            if book
+                h1 Delete "#{book.title}"
+
+                p Notice that deleting this book will delete all its instances!!
+
+                form(action="", method="post")
+
+                    input.form-control#book_id(type='text' value=book._id)
+                    p Do you want to delete this book and the instances?
+                    button.btn.btn-danger(type="submit") Delete
+            else 
+                p The book is succesfully deleted. Go to the <a href="/catalog/book">Book list page.</a>
+            
+            if errors
+                p #{errors.msg}

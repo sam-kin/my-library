@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+
+    .main-content
+        block main
+            h1 Delete #{author.name}
+
+            if exist
+                p(style='color: #e22') Clear author books and then delete the Author!!!!
+            
+            if author_books
+                p You need to delete author books first before deleteting the author.
+
+                h3 Books
+                ul
+                    for book in author_books
+                        li #{book.title}
+                
+                a.btn.btn-danger(href='') Delete all books
+
+        div(style='border-top: 1px solid #aaa; width: 100%; margin: 20px 0;')
+
+        p Do you want really to delete this author?
+        form(action='' method='POST')
+            input.form-control#author-id(type='text' value=(author===undefined)? '':author._id name='author_id')
+            button.btn.btn-danger(type='submit') Delete
+            

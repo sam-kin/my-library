@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+
+    .main-content
+        block main
+            h1 #{title}
+
+            form(action='' method='POST')
+                .form-group
+                    label(for='book') Book:
+                    select.form-control#book(type='select' name='book' placeholder='Select a book')
+                        -books.sort((a, b) => {let bA = a.title; let bB = b.title; return (bA < bB)? -1 : (bA > bB)? 1: 0})
+                        each book in books
+                            if bookinstance
+                                option(value=book._id selected=(book._id.toString()==bookinstance.book)) #{book.title}
+                            else
+                                option(value=book._id) #{book.title}
+
+                .form-group
+                    label(for='imprint') Imprint:
+                    input.form-control#imprint(type='text' placeholder='imprint' name='imprint' value=(bookinstance===undefined)? '': bookinstance.imprint)
+                
+                .form-group
+                    label(for='status') Status:
+                    select.form-control#status(type='select' name='status' placeholder='Select a status')
+                        -const options = ['Available', 'Maintenance', 'Loaned', 'Reserved'].sort()
+                        for option in options
+                            if bookinstance
+                                option(value=option selected=(bookinstance.status==option)) #{option}
+                            else
+                                option(value=option) #{option}
+                
+                .form-group
+                    label(for='due_back') Date when book available
+                    input.form-control#due_back(type='date' value=(due_back===undefined)? '':due_back name='due_back')
+                
+                button.btn.btn-primary(type='submit') Submit
+        
+            if errors
+                h4 Some errors:
+                ul.errors
+                    for error in errors
+                        li #{error.msg}

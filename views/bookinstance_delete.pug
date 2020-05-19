@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+    
+    .main-content
+        block main
+            h1 #{title}
+
+            p Do you really want to delete this book instance?
+
+            form(action="", method="post")
+                input.form-control#bookinstance_id(type='text' name='bookinstance_id' value=(bookinstance===undefined)? '':bookinstance._id)
+                button.btn.btn-danger(type='submit') Delete
+            
+            if errors
+                ul.errors
+                    for error in errors
+                        li #{error.msg}

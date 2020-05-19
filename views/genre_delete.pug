@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+
+    .main-content
+        block main
+            if genre
+                h1 Delete #{genre.name}
+
+                form(action='' method='POST')
+                    input.form-control#genre_id(type='text' name='genre_id' value=genre._id)
+
+                    p Do you really want to delete this genre and its books?
+
+                    button.btn.btn-danger(type='submit') Delete
+
+            else
+                p This genre and its books are successfully deleted !!

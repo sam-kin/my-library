@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+    
+    .main-content
+        block main
+            h1 Author: #{author.name}
+
+            p (#{author.formated_date_of_birth} - #{author.formated_date_of_death})
+
+            div(style='margin: 20px 0 0 20px')
+
+                h4 Books
+
+                dl
+                    each book in author_books 
+                        dt 
+                            a(href=book.url) #{book.title}
+                        dd #{book.summary}
+                    else 
+                        p This authors doesn't have books
+            
+            .control-container
+                a.btn.btn-primary(href=author.url + '/update') Update
+                a.btn.btn-danger(href=author.url + '/delete') Delete
+
+            if errors
+                ul.errors
+                    for error in errors
+                        li #{error.msg}

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+
+    .main-content
+        block main
+            h1 #{title}
+
+            form(action='' method="POST")
+                .form-group
+                    label(for='first_name') First name:
+                    input.form-control#first_name(type='text' name='first_name' placeholder='First name' value=(author===undefined)? '':author.first_name)
+                    label(for='last-name') Last name:
+                    input.form-control#last-name(type='text' name='last_name' placeholder='Last name' value=(author===undefined)? '':author.last_name)
+                    
+                .form-group
+                    label(for='date_of_birth') Date of birth:
+                    input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===author ? '' : dat_of_birth) )
+                    
+                button.btn.btn-primary(type='submit') Submit
+
+            if errors
+                h3 Some errors:
+                ul.errors
+                    for error in errors
+                        li!= error.msg
+
+        //- script(src="/javascripts/index.js" author={author:author})

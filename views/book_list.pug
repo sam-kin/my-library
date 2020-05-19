@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar.pug
+    .main-content
+        block main
+            h1= title
+
+            ul
+                - books_list.sort(function (a, b) {let texta = a.title.toUpperCase(); let textb = b.title.toUpperCase(); return (texta < textb)? -1 : (textb < texta)? 1 : 0})
+                each book in books_list
+                    li
+                        a(href=book.url) #{book.title}
+                        | (#{book.author.name})
+
+                else
+                    li there is no book

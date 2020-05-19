@@ -1,0 +1,24 @@
+{
+  "name": "espress-locallibrary-tutorial",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "engines": {
+    "node": "12.16.2"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-validator": "^6.4.1",
+    "http-errors": "~1.6.3",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.10",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.4",
+    "pug": "^2.0.4"
+  }
+}

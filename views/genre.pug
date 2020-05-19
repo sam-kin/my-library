@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+    .main-content
+        block main
+            h1= title
+
+            ul
+                - genres.sort((a, b) => {let ta = a.name.toUpperCase(); let tb = b.name.toUpperCase(); return (ta < tb)? -1 : (tb < ta)? 1 : 0})
+                each genre in genres 
+                    - console.log(genre)
+                    li
+                        a(href=genre.url) #{genre.name}

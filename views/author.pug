@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar.pug
+    .main-content
+        block main
+            h1= title
+
+            ul
+                each author in authors
+                    li
+                        a(href= author.url) #{author.name}
+                        | <br/>Date of birth: #{author.formated_date_of_birth}<br/>
+                        if author.date_of_death !== null
+                            | Date of death: #{author.formated_date_of_death}
+                
+                else
+                    li There are no authors in the list

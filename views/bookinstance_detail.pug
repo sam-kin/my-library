@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+
+    .main-content
+        block main
+            h1 ID: #{data.id}
+            
+            p #[strong Title:] 
+                a(href= data.book.url) #{data.book.title}
+            p #[strong Imprint:] #{data.imprint}
+            p #[strong Status:] 
+                if data.status == 'Available'
+                    span.text-success  #{data.status}
+                else if data.status == 'Maintenance'
+                    span.text-danger #{data.status}
+                else 
+                    span.text-warning #{data.status}
+
+            p #[strong Due back:] #{data.due_back_formated}
+
+            .control-container
+                -console.log(data.url)
+                a.btn.btn-primary(href=data.url + '/update') Update
+                a.btn.btn-danger(href=data.url + '/delete') Delete
+
+        if errors
+            ul.errors
+                for error in errors
+                    li #{error.msg}

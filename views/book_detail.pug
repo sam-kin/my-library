@@ -1,0 +1,50 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar.pug
+
+    .main-content
+        block main
+            - console.log(book.genre)
+            h1 Book: #{book.title}
+
+            p #[strong Author:] 
+                a(href=book.author.url) #{book.author.name}
+            p #[strong Summary:] #{book.summary}
+            p #[strong ISBN:] #{book.isbn}
+            p #[strong Genre:] 
+                if book.genre
+                    each genre in book.genre
+                        a(href=genre.url) #{genre.name} ,  
+
+            div(style='margin: 20px 0 0 20px;')
+
+                h4 Copies
+                each item in book_copies
+                    .copy-container
+
+                        if item.status == 'Available'
+                            p.text-success Available
+                        else if item.status == 'Maintenance'
+                            p.text-danger Maintenance
+                        else
+                            p.text-warning #{item.status}
+                        p #[strong Imprint:] #{item.imprint}
+                        if item.status != 'Available'
+                            p #[strong Due back:] #{item.due_back_formated}
+                        p #[strong Id:] 
+                            a(href=item.book.url) #{item.book.id}
+
+                else 
+                    p There are no copies of this book in the library
+
+            .control-container
+                a.btn.btn-primary(href=book.url + '/update') Update
+                a.btn.btn-danger(href=book.url + '/delete') Delete
+
+            if errors
+                ul.errors
+                    for error in errors
+                        li #{error.msg}

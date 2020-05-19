@@ -1,0 +1,49 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar
+
+    .main-content
+        block main
+            h1 #{title}
+
+            form(action='' method='POST')
+
+                .form-group
+                    label(for='title') Title:
+                    input.form-control#title(type='text' name='title' placeholder='Title of the book' value=(book===undefined)? '':book.title)
+                
+                .form-group
+                    label(for='author') Author:
+                    select#author.form-control(type='select' name='author' placeholder='Select author' required=true)
+                        - authors.sort((a, b) => {let nA = a.first_name; let nB = b.first_name; return (nA > nB)? 1 : (nA < nB)? -1 : 0})
+                        for author in authors
+                            if book
+                                option(value=author._id selected=(author._id.toString()==book.author)? 'selected' : false) #{author.name}
+                            else
+                                option(value=author._id) #{author.name}
+                    
+                .form-group
+                    label(for='isbn') ISBN:
+                    input.form-control#isbn(type='text' name='isbn' placeholder='ISBN13' value=(book===undefined) ? '' : book.isbn)
+
+                .form-group
+                    label(for='summary') Summary:
+                    textarea.form-control#summary(name="summary", rows="3") #{(book===undefined)? '' : book.summary}
+
+                div.form-group
+                    label Genre:
+                    div
+                        for genre in genres
+                            div(style='display: inline; padding-right:10px;')
+                                input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
+                                label(for=genre._id) #{genre.name}
+
+                button.btn.btn-primary(type='submit' style='margin-top: 20px;') Submit
+                
+            if errors
+                ul.errors
+                    for error in errors
+                        li!= error.msg

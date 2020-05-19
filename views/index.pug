@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .sidebar
+    block sidebar
+      include sidebar.pug
+  .main-content
+    block main
+      h1= title
+      p Welcome to #[em #{title}], a very basic Express website developed as a tutorial example on the mozila Dev Network.
+
+      h1 Dynamic content
+
+      if error
+        p Error getting dynamic content.
+      else
+        p The library has the following record counts:
+
+        ul
+          li #[strong Books:] !{data.book_count}
+          li #[strong Copies:] !{data.bookinstance_count}
+          li #[strong Copies avsilable:] !{data.bookinstance_available_count}
+          li #[strong Authors:] !{data.author_count}
+          li #[strong Genres:] !{data.genre_count}

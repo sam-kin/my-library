@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    .sidebar
+        block sidebar
+            include sidebar.pug
+
+    .main-content
+        block main
+            h1= title
+            
+            ul
+                each element in data
+                    li
+                        a(href=element.url) #{element.book.title} : #{element.imprint} - 
+                        if element.status === 'Available'
+                            span.text-success #{element.status}
+                        else if element.status === 'Maintenance'
+                            span.text-danger #{element.status}
+                        else
+                            span.text-warning #{element.status}
+                        if element.status != 'Available'
+                            span (Due: #{element.due_back_formated})
+
+                else
+                    li there are no book copies in the library
